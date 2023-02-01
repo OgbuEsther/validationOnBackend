@@ -1,0 +1,19 @@
+BUILD AN E-COMMERCE API
+
+STEPS:
+step1 : authentication and authorization
+
+-ENDPOINTS : register and login
+-METHODS : POST 
+-PACKAGES : bcrypt , Joi , express , mongoose , validator , morgan , .env
+
+step 2 : Post Products
+ENDPOINTS : postproducts , update products , general and single products , delete products
+METHODS : post , get , patch , delete  
+
+step3 : Order for products
+METHODS : order products , 
+
+
+step4 : Api Features
+-PAGINATION , FILTER , SORT , SEARCH 
