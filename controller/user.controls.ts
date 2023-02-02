@@ -94,3 +94,24 @@ export const LoginUsers = asyncHandler(
         })
     }
 )
+
+const getAll = asyncHandler(
+    async(req:Request, res:Response , next :NextFunction) => {
+        const users = await userModel.find();
+        if(!users){
+            next (
+                new AppERROR({
+                    message : "unable to get users",
+                    httpCode : HTTPCODES.BAD_REQUEST,
+                    name : AppERROR.name,
+        })
+        )
+        }
+
+        return res.status(HTTPCODES.OK).json({
+            message : "users fetched successfully",
+            data : users
+    })
+
+}
+)
