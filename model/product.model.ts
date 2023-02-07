@@ -24,7 +24,10 @@ rating : {
 },
 category : {
     type : String,
-    required : true
+    required : true,
+    enum : ["all" , "men's wear" , "women's wear" , "mobiles" , "books" , "electronics"],
+    message : "please select a category",
+    default : "all"
 },
 numberOfReview : {
     type : Number,
