@@ -28,6 +28,13 @@ const userSchema: mongoose.Schema<userData> = new mongoose.Schema({
         required :[true , "please confirm your password"],
         minlength : 6
     },
+    role : {
+type : String,
+required : [true , "please provide your role"],
+enum : ["admin" , "user" , "manager" ],
+message : `please choose one of the following roles: admin, user, manager`,
+default : "user"
+    }
     // cart:[
     //     {
     //         items : {
