@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Request } from "express";
 
 export interface Iuser extends mongoose.Document{
     name : string,
@@ -14,4 +15,9 @@ export interface Iuser extends mongoose.Document{
 //     }[];
     role : string;
     
+}
+
+
+export interface IAuthUser extends Request {
+    user : Iuser;
 }
