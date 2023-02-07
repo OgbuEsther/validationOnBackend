@@ -25,3 +25,22 @@ return res.status(201).json({
 
 
     })
+
+
+export const getProducts = asyncHandler(
+    async(req:Request , res : Response , next: NextFunction) =>{
+        const products = await productModel.find();
+
+        if(!products){
+            next(new AppERROR ({
+                message : "Product not found",
+                httpCode : HTTPCODES.BAD_REQUEST
+            }))
+        }
+
+        return res.status(200).json({
+            message : "Products fetched successfully",
+            data : products
+        })
+    }
+)
