@@ -12,5 +12,6 @@ export interface Iuser extends mongoose.Document{
         },
       
     }[];
+    role : string;
     
 }
