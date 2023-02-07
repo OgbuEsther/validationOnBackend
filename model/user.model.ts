@@ -28,15 +28,15 @@ const userSchema: mongoose.Schema<userData> = new mongoose.Schema({
         required :[true , "please confirm your password"],
         minlength : 6
     },
-    cart:[
-        {
-            items : {
-                products : mongoose.Schema.Types.ObjectId,
-                ref :"ProductDetailsCollections"
-            },
-            quantity : Number
-        }
-    ]
+    // cart:[
+    //     {
+    //         items : {
+    //             products : mongoose.Schema.Types.ObjectId,
+    //             ref :"ProductDetailsCollections"
+    //         },
+    //         quantity : Number
+    //     }
+    // ]
         
     
 }, {versionKey : false ,timestamps : true})
