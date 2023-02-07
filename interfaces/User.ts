@@ -5,12 +5,12 @@ export interface Iuser extends mongoose.Document{
     email : string,
     password : string,
     confirm : string
-    cart :{
+    cart? :{
         items : {
             products : mongoose.Schema.Types.ObjectId,
-
+  qunatity : number
         },
-        qunatity : number
+      
     }[];
     
 }
