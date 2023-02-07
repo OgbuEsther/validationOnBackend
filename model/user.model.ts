@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Iuser } from "../interfaces/User";
 import isEmail from "validator/lib/isEmail";
+import { authRoles } from "../constants/user.contants";
 
 
 interface userData extends Document , Iuser{}
@@ -31,7 +32,7 @@ const userSchema: mongoose.Schema<userData> = new mongoose.Schema({
     role : {
 type : String,
 required : [true , "please provide your role"],
-enum : ["admin" , "user" , "manager" ],
+enum : [authRoles.admin , authRoles.manager , authRoles.user],
 message : `please choose one of the following roles: admin, user, manager`,
 default : "user"
     }
