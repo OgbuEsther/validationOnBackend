@@ -95,7 +95,7 @@ export const LoginUsers = asyncHandler(
     }
 )
 
-const getAll = asyncHandler(
+export const getAll = asyncHandler(
     async(req:Request, res:Response , next :NextFunction) => {
         const users = await userModel.find();
         if(!users){

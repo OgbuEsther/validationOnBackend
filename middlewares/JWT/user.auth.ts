@@ -56,7 +56,7 @@ export const userAuth = (req:Request , res:Response , next :NextFunction) =>{
                         })
                     )
                 }
-                req.user = verifiedUser as Iuser
+                req!.user = verifiedUser as Iuser
 
                 next()
 
@@ -65,7 +65,7 @@ export const userAuth = (req:Request , res:Response , next :NextFunction) =>{
                     new AppERROR({
                         httpCode : HTTPCODES.INTERNAL_SERVER_ERROR,
                         message : error,
-                    })
+                    }),
                 )
             }
         }
