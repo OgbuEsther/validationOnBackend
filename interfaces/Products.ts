@@ -1,6 +1,16 @@
 import mongoose, { Document } from "mongoose";
 
 
+
+
+export interface reviewT {
+
+        user: mongoose.Schema.Types.ObjectId,
+        name : string,
+        rating: number,
+        comment : string
+    
+}
 export interface Iproducts extends Document {
     name : string;
     price : number;
@@ -8,10 +18,5 @@ export interface Iproducts extends Document {
     rating: number;
     productImage : string;
     numberOfReviews : number;
-    reviews : {
-        user: mongoose.Schema.Types.ObjectId,
-        name : string,
-        rating: number,
-        comment : string
-    }[];
+    reviews : reviewT[]
 }
