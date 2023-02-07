@@ -12,5 +12,16 @@ export const createProduct = asyncHandler(
     async(req:Request<{} , {} , Iproducts> , res : Response , next : NextFunction) => {
 const {name , productImage , price , category} = req.body;
 const product = await productModel.create({name, productImage, price, category});
+if(!product){
+    next(new AppERROR ({
+        message : "Product not found",
+        httpCode : HTTPCODES.BAD_REQUEST
+    }))
+}
+return res.status(201).json({
+    message : "Product created successfully",
+    data : product
+}) 
+
 
     })
