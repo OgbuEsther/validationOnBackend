@@ -1,6 +1,8 @@
 import jwt, { JwtPayload, Secret, VerifyErrors } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { AppERROR, HTTPCODES } from "../../utils/AppError";
+import userModel from "../../model/user.model";
+import { Iuser } from "../../interfaces/User";
 
 export interface PayLoad extends JwtPayload {
   _id: string;
@@ -49,6 +51,18 @@ export const userAuth = (req: Request, res: Response, next: NextFunction) => {
       }
 
       try {
+        const verifiedUser = await userModel.findOne({ _id: decodedUser._id });
+        if (!verifiedUser) {
+          next(
+            new AppERROR({
+              message: "you are unauthorized",
+              httpCode: HTTPCODES.UNAUTHORIZED,
+            })
+          );
+        }
+        req!.user = verifiedUser as Iuser;
+
+        next();
       } catch (error) {
         next(
           new AppERROR({
