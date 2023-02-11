@@ -1,32 +1,34 @@
 import jwt, { JwtPayload, Secret, VerifyErrors } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { AppERROR, HTTPCODES } from "../../utils/AppError";
-import userModel from "../../model/user.model";
-import { Iuser } from "../../interfaces/User";
 
-interface PayLoad extends JwtPayload {
+export interface PayLoad extends JwtPayload {
   _id: string;
   email: string;
 }
 
-const secret = "wefwhgdeytkweddaqredstfw";
+export const secret = "dynamitebysia";
 
-export const genToken = (user: PayLoad) => {
-  return jwt.sign(user, secret as Secret, { expiresIn: "1h" });
+export const generateToken = (user: PayLoad) => {
+  jwt.sign(user, secret as Secret, { expiresIn: "1h" });
 };
 
 export const userAuth = (req: Request, res: Response, next: NextFunction) => {
+  //get token from our headers
+
   const headers = req.headers.authorization;
   if (!headers || !headers.startsWith("Bearer ")) {
     next(
       new AppERROR({
+        message: "you are unauthorized",
         httpCode: HTTPCODES.UNAUTHORIZED,
-        message: "you are unauthorised",
       })
     );
   }
 
   const token: string = headers!.split(" ")[1];
+
+  //verify
 
   jwt.verify(
     token,
@@ -35,8 +37,25 @@ export const userAuth = (req: Request, res: Response, next: NextFunction) => {
       if (err) {
         const errorMsg =
           err.name === "JsonWebTokenError"
-            ? "Invalid token , you are unauthorised"
+            ? "Invalid Token , you areb unauthorized"
             : err.message;
+
+        next(
+          new AppERROR({
+            message: errorMsg,
+            httpCode: HTTPCODES.UNAUTHORIZED,
+          })
+        );
+      }
+
+      try {
+      } catch (error) {
+        next(
+          new AppERROR({
+            message: error,
+            httpCode: HTTPCODES.INTERNAL_SERVER_ERROR,
+          })
+        );
       }
     }
   );
