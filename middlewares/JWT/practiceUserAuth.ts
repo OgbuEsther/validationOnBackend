@@ -28,5 +28,16 @@ export const userAuth = (req: Request, res: Response, next: NextFunction) => {
 
   const token: string = headers!.split(" ")[1];
 
-  jwt.verify(token, secret as Secret);
+  jwt.verify(
+    token,
+    secret as Secret,
+    async (err: VerifyErrors | null, decodedUser: any) => {
+      if (err) {
+        const errorMsg =
+          err.name === "JsonWebTokenError"
+            ? "Invalid token , you are unauthorised"
+            : err.message;
+      }
+    }
+  );
 };
