@@ -1,14 +1,13 @@
-import { userSchemaValidator } from "./userSchema";
-import { validator } from "../validators";
-
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { NextFunction, RequestHandler, Request, Response } from "express";
+import { userSchema } from "./practiceUserSchema";
+import { validators } from "../practiceValidators";
 
 export const registerValidation: RequestHandler = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  validator(userSchemaValidator.register, req.body, next);
+  validators(userSchema.register, req.body, next);
 };
 
 export const loginValidation: RequestHandler = (
@@ -16,5 +15,5 @@ export const loginValidation: RequestHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  validator(userSchemaValidator.login, req.body, next);
+  validators(userSchema.login, req.body, next);
 };
