@@ -12,9 +12,9 @@ const app: Application = express();
 appConfig(app);
 dbConfig();
 
-app.get("/", (req: Request, res: Response) => {
-  return res.status(200).send("server is up and running");
-});
+// app.get("/", (req: Request, res: Response) => {
+//   return res.status(200).send("server is up and running");
+// });
 
 app.listen(Port, () => {
   console.log(`server is up on port ${Port}`);
