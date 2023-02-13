@@ -23,6 +23,9 @@ export const validator = async (
         )
       : next();
   } catch (error) {
-    console.log(error);
+    new AppERROR({
+      httpCode: HTTPCODES.BAD_REQUEST,
+      message: error,
+    });
   }
 };
