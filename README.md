@@ -20,3 +20,10 @@ Essencially, an ORM use a SQL database Driver like ODBC, JDBC or OLEDB to transl
 There are different kind of implementations under the hood.
 
 PS: JSONB is a JSON text document notation stored in a binary format as used by MongoDB
+
+//more explanation on ODM and ORM
+Object-Relational Mapping (ORM) is a technique that lets you query and manipulate data from a database using an object-oriented paradigm. When talking about ORM, most people are referring to a library that implements the Object-Relational Mapping technique, hence the phrase "an ORM
+
+while ODM does the same thing but only with documents
+
+we store data in JSON format (ODM) and we store data in table format (ORM)
