@@ -8,3 +8,15 @@ Typegoose aims to solve this problem by defining only a TypeScript interface (cl
 //ODM & ORM
 
 ORM (Object Relational Mapper) maps the relations between data, where as ODM (Object Document Mapper) deals with documents
+
+MySQL is an example of a relational database - you would use an ORM to translate between your objects in code and the relational representation of the data.
+
+Examples of ORMs are nHibernate, Entity Framework, Dapper and more...
+
+MongoDB is an example of a document database - you would use an ODM to translate between your objects in code and the document representation of the data (if needed).
+
+Essencially, an ORM use a SQL database Driver like ODBC, JDBC or OLEDB to translate the object notation to relational notation and an ODM use a JSON or JSONB api to translate the Object notation to Document notation.
+
+There are different kind of implementations under the hood.
+
+PS: JSONB is a JSON text document notation stored in a binary format as used by MongoDB
