@@ -17,3 +17,6 @@ METHODS : order products ,
 
 step4 : Api Features
 -PAGINATION , FILTER , SORT , SEARCH 
+
+
+ADD TO CART , CLEAR CART , REMOVE FROM CART , GET CART , 

@@ -60,12 +60,7 @@ export const userAuth = (req: Request, res: Response, next: NextFunction) => {
 
         next();
       } catch (error) {
-        next(
-          new AppERROR({
-            httpCode: HTTPCODES.INTERNAL_SERVER_ERROR,
-            message: error,
-          })
-        );
+        console.log(error);
       }
     }
   );
