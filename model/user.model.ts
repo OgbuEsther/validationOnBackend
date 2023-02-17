@@ -88,7 +88,19 @@ userSchema.methods.addToCart = function (
       }
       updateCartItems[cartItemIndex].qunatity = newQuantity;
     }
+  } else {
+    updateCartItems.push({
+      productID: productId,
+      qunatity: newQuantity,
+    });
   }
+
+  const updatedCart = {
+    items: updateCartItems,
+  };
+
+  this.cart.items = updatedCart;
+  return this.save({ validateBeforeSave: false });
 };
 
 userSchema.methods.removeFromCart = function (productId: string) {
