@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-import { Iuser } from "../interfaces/User";
+import { ICartItems, Iuser } from "../interfaces/User";
 import isEmail from "validator/lib/isEmail";
 import { authRoles } from "../constants/user.contants";
 
@@ -63,7 +63,33 @@ const userSchema: mongoose.Schema<userData> = new mongoose.Schema(
 userSchema.methods.addToCart = function (
   productId: string,
   doDecrease: boolean
-) {};
+) {
+  let cartItemIndex = -1;
+  let updateCartItems: ICartItems[] = [];
+
+  if (this.cart.items) {
+    cartItemIndex = this.cart.items.findIndex(
+      (cb: { productID: { toString: () => string } }) => {
+        return cb.productID.toString() === productId.toString();
+      }
+    );
+    updateCartItems = [...this.cart.items];
+  }
+
+  let newQuantity = 1;
+
+  if (cartItemIndex >= 0) {
+    if (doDecrease) {
+      newQuantity = this.cart.items[cartItemIndex].quantity - 1;
+      if (newQuantity <= 0) {
+        return this.removeFromCart(productId);
+      } else {
+        newQuantity = this.cart.items[cartItemIndex].quantity + 1;
+      }
+      updateCartItems[cartItemIndex].qunatity = newQuantity;
+    }
+  }
+};
 
 userSchema.methods.removeFromCart = function (productId: string) {
   const updateCart = this.cart.items.filter(
