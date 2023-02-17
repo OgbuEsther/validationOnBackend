@@ -77,5 +77,7 @@ export const addToCart = asyncHandler(
     const final = {
       user: upDatedUser,
     };
+
+    return res.status(200).json(final);
   }
 );
