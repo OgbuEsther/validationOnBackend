@@ -9,6 +9,12 @@ interface userData extends Document, Iuser {
   removeFromCart(productId: string): Promise<void>;
 }
 
+interface Userdata extends Document, Iuser {
+  clearCart(): Promise<void>;
+  addToCart(productId: string, doDecrease: boolean): Promise<boolean>;
+  removecart(productID: string): Promise<void>;
+}
+
 const userSchema: mongoose.Schema<userData> = new mongoose.Schema(
   {
     name: {
@@ -111,6 +117,12 @@ userSchema.methods.removeFromCart = function (productId: string) {
   );
   this.cart.items = updateCart;
   return this.save({ validateBeforeSave: false });
+};
+
+userSchema.methods.removeFromCart = function (productId: string) {
+  const updateCart = this.cart.items.filter(
+    (item: { productId: { toString: () => string } }) => {}
+  );
 };
 
 userSchema.methods.clearCart = function () {
