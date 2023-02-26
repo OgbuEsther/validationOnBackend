@@ -9,12 +9,6 @@ interface userData extends Document, Iuser {
   removeFromCart(productId: string): Promise<void>;
 }
 
-interface Userdata extends Document, Iuser {
-  clearCart(): Promise<void>;
-  addToCart(productId: string, doDecrease: boolean): Promise<boolean>;
-  removecart(productID: string): Promise<void>;
-}
-
 const userSchema: mongoose.Schema<userData> = new mongoose.Schema(
   {
     name: {
